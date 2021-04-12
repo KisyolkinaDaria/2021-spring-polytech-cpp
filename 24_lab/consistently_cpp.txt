@@ -1,0 +1,62 @@
+#include <iostream>
+#include <algorithm>
+#include <clocale>
+#include <ctime>
+
+using namespace std;
+
+void array_initialization(int array_dimension, int n)
+{
+    int array[2];
+    srand(time(0));
+
+    for (int i = 0; i < array_dimension; i++)
+    {
+        array[i] = rand() % n;
+        cout << array[i] << "\t";
+        cout << endl;
+    }
+
+    sort(array, array + n);
+
+    int key;
+    bool flag = false;
+    int l = 0;
+    int r = n;
+    int mid;
+
+    cout << "Введите элемент, который хотите найти:" << endl;
+    cin >> key;
+
+    while ((l <= r) && (flag != true))
+    {
+        mid = (l + r) / 2;
+
+        if (array[mid] == key) flag = true;
+        if (array[mid] > key) r = mid - 1;
+        else l = mid + 1;
+    }
+
+    if (flag == true)
+    {
+        cout << "Индекс элемента " << key << " в отсортированном массиве равен: " << mid << endl;
+    }
+    else cout << "Такого элемента в массиве нет." << endl;
+}
+
+int main()
+{
+    setlocale(LC_CTYPE, "RUS");
+
+    int array_dimension;
+    int n;
+    cout << "Введите размерность массива:" << endl;
+    cin >> array_dimension;
+    cout << "Введите конечное число рандомных чисел:" << endl;
+    cin >> n;
+    cout << endl;
+    array_initialization(array_dimension, n);
+
+    system("pause");
+    return 0;
+}
