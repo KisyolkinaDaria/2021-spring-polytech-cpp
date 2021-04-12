@@ -1,0 +1,45 @@
+void array_initialization(int array_dimension, int number)
+{
+    int array[2];
+    srand(time(0));
+
+    for (int i = 0; i < array_dimension; i++)
+    {
+        array[i] = rand() % number;
+        cout << array[i] << "\t";
+        cout << endl;
+    }
+
+    sort(array, array + number);
+}
+
+int binary_search(int array[], int key_number, int left, int right)
+{
+    int n;
+    int left = 0;
+    int right = n;
+
+    cout << "введите число, которое хотите найти:" << endl;
+    cin >> key_number;
+
+    int middle = (left + right) / 2;
+
+    if (array[middle] == key_number)
+    {
+        return middle;
+    }
+
+    if (array[middle] < key_number)
+    {
+        return  binary_search(array, key_number, right, middle);
+    }
+    else if (array[middle] > key_number)
+    {
+        return  binary_search(array, key_number, left, middle);
+    }
+
+    if (middle == right || middle == left)
+    {
+        cout << "error" << endl;
+    }
+}
